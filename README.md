@@ -6,7 +6,7 @@
   <h3 align="center">single-page-vue</h3>
 
   <p align="center">
-    Game page
+    Single page with vue
     <br />
     <a href="https://github.com/viniciusgugelmin/single-page-vue"><strong>Explore the docs »</strong></a>
     <br />
