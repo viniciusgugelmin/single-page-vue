@@ -37,7 +37,7 @@
 
 
 ## About The Project
-4fun project - single page with vue
+4fun project - single page with Vue and Materialize
 
 <img src="info/demo.png" alt="readme-logo" width="800">
 
