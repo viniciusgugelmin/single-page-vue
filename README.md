@@ -39,6 +39,7 @@
 ## About The Project
 4fun project - single page with vue
 
+<img src="info/demo.png" alt="readme-logo" width="800">
 
 ## Roadmap
 
