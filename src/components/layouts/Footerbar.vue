@@ -1,24 +1,9 @@
 <template>
   <footer class="page-footer z-depth-2" :class="color">
-    <div v-show="footerVisibility" class="container hide-on-med-and-down">
-      <div class="row">
-        <!-- Scaled in -->
-        <div class="col l6 s12">
-          <h5 class="white-text">{{ title }}</h5>
-          <p class="grey-text text-lighten-4">{{ description }}</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Lorem ipsum</h5>
-          <ul>
-            <slot></slot>
-          </ul>
-        </div>
-      </div>
-    </div>
     <div class="footer-copyright" :class="color">
       <div class="container">
         <span>&copy; {{ currentYear }} Copyright {{ title }}</span>
-        <button class="right" @click="footerVisibility = !footerVisibility">{{ footerVisibility ? 'open' : 'close' }}</button>
+        <a href="#top" class="right"></a>
       </div>
     </div>
   </footer>

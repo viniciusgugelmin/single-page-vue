@@ -1,7 +1,10 @@
 <template>
   <nav :class="color">
     <div class="nav-wrapper container">
-      <a :href="url" :class="logo">{{ title }}</a>
+      <a :href="url" :class="logo">
+        <i class="material-icons logo" :class="color">grain</i>
+        <span>{{ title }}</span>
+      </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="#">Lorem</a></li>
         <li><a href="#">Lorem</a></li>
@@ -43,6 +46,18 @@ export default {
 </script>
 
 <style scoped>
+.nav-wrapper {
+  font-weight: 500;
+}
+
+.logo {
+  float: inherit !important;
+  font-size: 31px;
+  display: inline;
+  margin-right: 0.15rem !important;
+  vertical-align: middle;
+}
+
 a {
   opacity: 1;
   transition: opacity 0.25s ease-in !important;

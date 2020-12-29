@@ -1,57 +1,41 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col s12">
-        <div v-for="item in items">
-          <card-vue :color="color" :title="title" :description="item.description" />
-        </div>
-        <div class="center">
-          <button class="btn-floating btn-large" @click="addCard()">
-            <i class="material-icons" :class="color">add</i>
-          </button>
-        </div>
-      </div>
-    </div>
+    <poster-vue :color="color" :submit="onSubmit" :disabled="disabled" />
+    <timeline-vue :color="color" :name="name" :posts="posts" />
   </div>
 </template>
 
 <script>
-import CardVue from "@/components/CardVue";
-
+import TimelineVue from "../components/home/TimelineVue";
+import PosterVue from "../components/home/PosterVue";
 export default {
   name: 'Home',
 
-  components: {
-    CardVue
-  },
+  components: {PosterVue, TimelineVue},
 
   data () {
     return {
-      items: [
-        {
-          description: "Lorem ipsum 1"
-        }
-      ],
-
       color: 'blue-grey darken-2',
-      title: 'Lorem ipsum',
+      name: 'Lorem ipsum',
+
+      posts: [],
+
+      disabled: false,
     }
   },
 
   methods: {
-    addCard() {
-      let item = { description: 'Lorem ipsum ' + (this.items.length + 1 ) }
+    onSubmit(description) {
+      this.disabled = true;
+      let post = { name: this.name, description: description, date: new Date().toLocaleString() }
 
-      this.items.push(item);
+      this.posts.push(post);
+      this.disabled = false;
     }
-  },
+  }
 }
 </script>
 
 <style scoped>
-button {
-  transform: scale(0.75);
-  z-index: 0;
-  margin-bottom: 2.5rem;
-}
+
 </style>
