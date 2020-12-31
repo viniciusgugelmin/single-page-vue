@@ -5,7 +5,7 @@
       <label for="textarea1">What's happening?</label>
     </div>
     <div v-if="btnVisibility" class="right">
-      <button class="btn" :class="disabled" :loading="true" @click="submit(description)">Post</button>
+      <button class="btn" :class="disabled" @click="submit(description)">Post</button>
     </div>
   </div>
 </template>

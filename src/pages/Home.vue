@@ -1,17 +1,18 @@
 <template>
-  <div>
+  <site-template>
     <poster-vue :color="color" :submit="onSubmit" :disabled="disabled" />
     <timeline-vue :color="color" :name="name" :posts="posts" />
-  </div>
+  </site-template>
 </template>
 
 <script>
-import TimelineVue from "../components/home/TimelineVue";
-import PosterVue from "../components/home/PosterVue";
+import SiteTemplate from "@/layouts/SiteTemplate";
+import TimelineVue from "@/components/home/TimelineVue";
+import PosterVue from "@/components/home/PosterVue";
 export default {
   name: 'Home',
 
-  components: {PosterVue, TimelineVue},
+  components: {PosterVue, TimelineVue, SiteTemplate},
 
   data () {
     return {

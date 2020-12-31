@@ -1,19 +1,20 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div :class="'col s' + sizeMenu">
-        <slot></slot>
-      </div>
-      <div :class="'col s' + sizeContent">
-        <router-view />
-      </div>
+  <div :class="'col s' + sizeMenu">
+    <div id="user-row">
+      <card-photo-vue :color="color" :user-name="userName" />
+      <card-menu-itens-vue :color="color" />
     </div>
   </div>
 </template>
 
 <script>
+import CardMenuItensVue from "../user/CardMenuItensVue";
+import CardPhotoVue from "../user/CardPhotoVue";
+
 export default {
   name: "GridVue",
+
+  components: {CardPhotoVue, CardMenuItensVue},
 
   props: {
     sizeMenu: {
@@ -21,11 +22,16 @@ export default {
       default: 4
     },
 
-    sizeContent: {
-      type: Number,
-      default: 8
+    color: {
+      type: String
     }
   },
+
+  data() {
+    return {
+      userName: 'Lorem ipsum',
+    }
+  }
 }
 </script>
 
