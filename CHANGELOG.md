@@ -1,7 +1,7 @@
 # Changelog
 
 ## [1.0.0] - 2020-12-27
-### Adicionado
+### Added
 - NavBar (header)
 - FooterBar (footer)
 - GridVue (main/layout)
