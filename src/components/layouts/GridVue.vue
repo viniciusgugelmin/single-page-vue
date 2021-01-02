@@ -1,20 +1,21 @@
 <template>
-  <div :class="'col s' + sizeMenu">
-    <div id="user-row">
-      <card-photo-vue :color="color" :user-name="userName" />
-      <card-menu-itens-vue :color="color" />
+  <div class="container">
+    <div class="row">
+      <div :class="'col s' + sizeMenu">
+        <div id="user-row">
+          <slot name="user-row"></slot>
+        </div>
+      </div>
+      <div :class="'col s' + sizeContent">
+        <slot name="content-row"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import CardMenuItensVue from "../user/CardMenuItensVue";
-import CardPhotoVue from "../user/CardPhotoVue";
-
 export default {
   name: "GridVue",
-
-  components: {CardPhotoVue, CardMenuItensVue},
 
   props: {
     sizeMenu: {
@@ -22,16 +23,11 @@ export default {
       default: 4
     },
 
-    color: {
-      type: String
-    }
+    sizeContent: {
+      type: Number,
+      default: 8
+    },
   },
-
-  data() {
-    return {
-      userName: 'Lorem ipsum',
-    }
-  }
 }
 </script>
 

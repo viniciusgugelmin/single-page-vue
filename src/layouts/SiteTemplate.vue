@@ -4,14 +4,15 @@
       <navbar :color="color" url="#" logo="brand-logo" :title="title"/>
     </header>
     <main>
-      <div class="container">
-        <div class="row">
-          <grid-vue :color="color" :size-menu="sizeMenu" />
-          <div :class="'col s' + sizeContent">
-            <slot></slot>
-          </div>
-        </div>
-      </div>
+      <grid-vue>
+        <span slot="user-row">
+          <card-photo-vue :color="color" :user-name="userName" />
+          <card-menu-itens-vue :color="color" />
+        </span>
+        <span slot="content-row">
+          <slot></slot>
+        </span>
+      </grid-vue>
     </main>
     <footerbar :color="color" :title="title">
       <li><a class="grey-text text-lighten-3" href="#">Home</a></li>
@@ -36,6 +37,8 @@ export default {
 
       sizeMenu: 4,
       sizeContent: 8,
+
+      userName: 'Lorem ipsum',
     }
   },
   components: {

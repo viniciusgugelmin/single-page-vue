@@ -9,6 +9,7 @@
 import SiteTemplate from "@/layouts/SiteTemplate";
 import TimelineVue from "@/components/home/TimelineVue";
 import PosterVue from "@/components/home/PosterVue";
+
 export default {
   name: 'Home',
 

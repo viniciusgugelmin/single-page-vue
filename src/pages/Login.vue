@@ -1,16 +1,18 @@
 <template>
   <login-template>
-    <form @submit.prevent="">
-      <div class="cell">
-        <input v-model="form.email" id="email" type="text" class="validate">
-        <label for="email">E-mail</label>
-      </div>
-      <div class="cell">
-        <input v-model="form.password" id="password" type="password" class="validate">
-        <label for="password">Password</label>
-      </div>
-      <p><button class="btn right" @click="">Login</button></p>
-    </form>
+    <div class="card-form">
+      <form @submit.prevent="" class="blue-grey darken-2">
+        <div class="cell">
+          <input v-model="form.email" id="email" type="text" class="validate">
+          <label for="email">E-mail</label>
+        </div>
+        <div class="cell">
+          <input v-model="form.password" id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <button class="btn right" @click="">Login</button>
+      </form>
+    </div>
   </login-template>
 </template>
 
@@ -53,17 +55,33 @@ export default {
 </script>
 
 <style scoped>
-form {
+.card-form {
   margin: auto;
   max-width: 800px;
 }
 
+form {
+  height: 250px;
+  padding: 1.75rem;
+  border: 2px solid #263238;
+  border-radius: 50px;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
 input {
-  box-shadow: 0 0 0 30px #263238 inset !important;
+  box-shadow: 0 0 0 30px #455a64 inset !important;
   color: white !important;
   -webkit-text-fill-color: white !important;
 
   border-bottom: 1px solid white !important;
+}
+
+label {
+  color: white !important;
+}
+
+.active {
+  color: white !important;
 }
 
 .btn {
