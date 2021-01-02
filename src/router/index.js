@@ -6,9 +6,10 @@ import Login from "@/pages/Login";
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
       component: Home
     },

@@ -1,7 +1,7 @@
 <template>
   <span>
     <header>
-      <navbar :color="color" url="#" logo="brand-logo" :title="title"/>
+      <navbar :color="color" logo="brand-logo" :title="title"/>
     </header>
     <main>
       <div class="container">

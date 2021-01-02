@@ -1,14 +1,13 @@
 <template>
   <nav :class="color">
     <div class="nav-wrapper container">
-      <a :href="url" :class="logo">
+      <router-link :to="{name:'Home'}" :class="logo">
         <i class="material-icons logo" :class="color">grain</i>
         <span>{{ title }}</span>
-      </a>
+      </router-link>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Lorem</a></li>
-        <li><a href="#">Lorem</a></li>
-        <li><a href="#">Lorem</a></li>
+        <li><router-link :to="{name:'Home'}">Home</router-link></li>
+        <li><router-link :to="{name:'Login'}">Login</router-link></li>
       </ul>
     </div>
   </nav>
@@ -20,11 +19,6 @@ export default {
   props: {
     logo: {
       type: String,
-    },
-
-    url: {
-      type: String,
-      required: true
     },
 
     color: {
