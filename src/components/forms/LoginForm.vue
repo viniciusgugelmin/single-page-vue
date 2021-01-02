@@ -1,27 +1,30 @@
 <template>
-  <login-template>
-    <login-form v-if="!registerForm">
-      <button class="btn right r-btn" @click="registerForm = true">Create new account</button>
-    </login-form>
-    <register-form v-else>
-      <button class="btn right r-btn" @click="registerForm = false">Already have an account</button>
-    </register-form>
-  </login-template>
+  <div class="card-form">
+    <form @submit.prevent="" class="blue-grey darken-2">
+      <div class="cell">
+        <input v-model="form.email" id="email" type="text" class="validate">
+        <label for="email">E-mail</label>
+      </div>
+      <div class="cell">
+        <input v-model="form.password" id="password" type="password" class="validate">
+        <label for="password">Password</label>
+      </div>
+      <button class="btn right l-btn" @click="">Log in</button>
+      <slot />
+    </form>
+  </div>
 </template>
 
 <script>
-import LoginTemplate from "../layouts/LoginTemplate";
-import LoginForm from "../components/forms/LoginForm";
-import RegisterForm from "../components/forms/RegisterForm";
-
 export default {
-  name: 'Login',
-
-  components: {RegisterForm, LoginForm, LoginTemplate},
+  name: 'LoginForm',
 
   data () {
     return {
-      registerForm: false,
+      form: {
+        email: '',
+        password: ''
+      },
     }
   },
 
