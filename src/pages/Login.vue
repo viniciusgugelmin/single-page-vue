@@ -1,10 +1,10 @@
 <template>
   <login-template>
     <login-form v-if="!registerForm">
-      <button class="btn right r-btn" @click="registerForm = true">Create new account</button>
+      <router-link class="btn right r-btn" :to="{name:'Sign up'}">Create new account</router-link>
     </login-form>
     <register-form v-else>
-      <button class="btn right r-btn" @click="registerForm = false">Already have an account</button>
+      <router-link class="btn right r-btn" :to="{name:'Login'}">Already have an account</router-link>
     </register-form>
   </login-template>
 </template>
@@ -25,9 +25,15 @@ export default {
     }
   },
 
-  methods: {
-
+  mounted() {
+    this.registerForm = this.$route.meta.registerForm;
   },
+
+  watch: {
+    '$route' (to, from) {
+      this.registerForm = this.$route.meta.registerForm;
+    }
+  }
 }
 </script>
 

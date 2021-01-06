@@ -16,6 +16,13 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
+      meta: { registerForm: false },
+      component: Login
+    },
+    {
+      path: '/sign-up',
+      name: 'Sign up',
+      meta: { registerForm: true },
       component: Login
     },
     {
