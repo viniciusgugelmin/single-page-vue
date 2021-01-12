@@ -20,7 +20,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/sign-up',
+      path: '/signup',
       name: 'Sign up',
       meta: { registerForm: true },
       component: Login
