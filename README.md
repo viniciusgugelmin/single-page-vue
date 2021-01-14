@@ -37,6 +37,7 @@
 
 
 ## About The Project
+
 4fun project - SPA with Vue.js and PHP
 
 <ul>
@@ -45,9 +46,9 @@
   <li>Timeline;</li>
 </ul>
 
-<img src="info/demo.png" alt="readme-demo" width="800">
-
+<img src="info/demo.png" alt="readme-demo" width="800"></br>
 <img src="info/demo1.png" alt="readme-demo" width="800">
+
 
 ## Roadmap
 
