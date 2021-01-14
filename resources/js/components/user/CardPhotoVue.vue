@@ -4,7 +4,7 @@
       <user />
     </div>
     <div class="card-content">
-      <span class="card-title grey-text text-darken-4">{{ userName }}</span>
+      <span class="card-title grey-text text-darken-4">{{ user.name }}</span>
     </div>
   </div>
 </template>
@@ -23,11 +23,6 @@ export default {
     title: {
       type: String,
     },
-
-    userName: {
-      type: String,
-      required: true
-    }
   },
 
   data () {

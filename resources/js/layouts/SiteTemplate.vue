@@ -1,12 +1,12 @@
 <template>
   <span>
     <header>
-      <navbar :color="color" logo="brand-logo" :title="title"/>
+      <navbar :color="color" logo="brand-logo" :title="title" />
     </header>
     <main>
       <grid-vue>
         <span slot="user-row">
-          <card-photo-vue :color="color" :user-name="userName" />
+          <card-photo-vue :color="color" />
           <card-menu-itens-vue :color="color" />
         </span>
         <span slot="content-row">
@@ -30,6 +30,14 @@ import CardMenuItensVue from "@/components/user/CardMenuItensVue";
 export default {
   name: 'SiteTemplate',
 
+  components: {
+    CardMenuItensVue,
+    CardPhotoVue,
+    GridVue,
+    Navbar,
+    Footerbar
+  },
+
   data() {
     return {
       title: 'Lorem ipsum',
@@ -37,16 +45,17 @@ export default {
 
       sizeMenu: 4,
       sizeContent: 8,
-
-      userName: 'Lorem ipsum',
     }
   },
-  components: {
-    CardMenuItensVue,
-    CardPhotoVue,
-    GridVue,
-    Navbar,
-    Footerbar
+
+  created() {
+    let userLogged = sessionStorage.getItem('user');
+
+    if (userLogged) {
+      this.user = JSON.parse(userLogged);
+    } else {
+      this.$router.push({name: 'Login'});
+    }
   },
 }
 </script>

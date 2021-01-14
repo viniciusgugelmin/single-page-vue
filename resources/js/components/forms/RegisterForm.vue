@@ -14,16 +14,18 @@
         <label for="password">Password</label>
       </div>
       <div class="cell">
-        <input v-model="form.password_confirm" id="password_confirm" type="password" class="validate">
-        <label for="password_confirm">Password confirm</label>
+        <input v-model="form.password_confirmation" id="password_confirmation" type="password" class="validate">
+        <label for="password_confirmation">Password confirm</label>
       </div>
-      <button class="btn right l-btn" @click="">Sign up</button>
+      <button class="btn right l-btn" @click="onSubmit" :disabled="loading">Sign up</button>
       <slot />
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'RegisterForm',
 
@@ -33,13 +35,44 @@ export default {
         name: '',
         email: '',
         password: '',
-        password_confirm: '',
+        password_confirmation: '',
       },
+
+      loading: false,
     }
   },
 
   methods: {
+    onSubmit() {
+      this.loading = true;
 
+      axios.post( this.localhost + '/api/user/register', {
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.password_confirmation
+      })
+        .then(response => {
+          if (response.data.type === 'error' && !response.data.status) {
+            for (let error of Object.values(response.data.message)) {
+              console.log(error[0]);
+            }
+          } else if (response.data.type === 'error' && response.data.status) {
+            console.log(response.data.message)
+          } else if (response.data.type === 'success') {
+            console.log(response.data.message)
+            sessionStorage.setItem('user', JSON.stringify(response.data.user))
+            this.$router.push({name:'Home'})
+          }
+        })
+        .catch(error => {
+          console.log('Your request can\'t be completed right now. Please wait a few minutes before you try again.')
+        })
+        .finally(() =>{
+          console.log('------');
+          this.loading = false;
+        })
+    }
   },
 }
 </script>

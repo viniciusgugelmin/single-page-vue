@@ -5,7 +5,7 @@
       <label for="textarea1">What's happening?</label>
     </div>
     <div v-if="btnVisibility" class="right">
-      <button class="btn" :class="disabled" @click="submit(description)">Post</button>
+      <button class="btn" :class="disabled" @click="onSubmit(description)">Post</button>
     </div>
   </div>
 </template>
@@ -35,10 +35,15 @@ export default {
     }
   },
 
+  methods: {
+    onSubmit(description) {
+      this.submit(description);
+      this.description = '';
+    }
+  },
+
   watch: {
     'description'() {
-
-
       this.btnVisibility = this.description;
     }
   }

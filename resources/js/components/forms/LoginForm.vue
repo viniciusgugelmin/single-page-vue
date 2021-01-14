@@ -9,15 +9,13 @@
         <input v-model="form.password" id="password" type="password" class="validate">
         <label for="password">Password</label>
       </div>
-      <button class="btn right l-btn" @click="login()">Log in</button>
+      <button class="btn right l-btn" @click="onSubmit()" :disabled="loading">Log in</button>
       <slot />
     </form>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: 'LoginForm',
 
@@ -27,11 +25,15 @@ export default {
         email: '',
         password: ''
       },
+
+      loading: false,
     }
   },
 
   methods: {
-    login() {
+    onSubmit() {
+      this.loading = true;
+
       axios.post( this.localhost + '/api/user/login', {
         email: this.form.email,
         password: this.form.password
@@ -46,6 +48,7 @@ export default {
           } else if (response.data.type === 'success') {
             console.log(response.data.message)
             sessionStorage.setItem('user', JSON.stringify(response.data.user))
+            this.$router.push({name:'Home'})
           }
         })
         .catch(error => {
@@ -53,6 +56,7 @@ export default {
         })
         .finally(() =>{
           console.log('------');
+          this.loading = false;
         })
     }
   },

@@ -12,37 +12,47 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        $data = $request->all();
+        try {
+            $data = $request->all();
 
-        $validation = Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            $validation = Validator::make($data, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
 
-        if ($validation->fails()) {
+            if ($validation->fails()) {
+                return response()->json([
+                    'type' => 'error',
+                    'message' => $validation->errors(),
+                ]);
+            }
+
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+
+            $user->token = $user->createToken($user->email)->accessToken;
+
             return response()->json([
-                'message' => $validation->errors(),
-            ], 422);
+                'type' => 'success',
+                'user' => $user,
+                'message' => 'Registered user.'
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'type' => 'error',
+                'status' => '422',
+                'message' => 'Your request can\'t be completed right now. Please wait a few minutes before you try again.',
+            ]/* , 422*/);
         }
-
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        $user->token = $user->createToken($user->email)->accessToken;
-
-        return response()->json([
-            'user' => $user
-        ]);
     }
 
     public function login(Request $request)
     {
         try {
-
             $data = $request->all();
 
             $validation = Validator::make($data, [
@@ -71,10 +81,9 @@ class UserController extends Controller
             return response()->json([
                 'type' => 'success',
                 'user' => $user,
-                'message' => 'User logged in.'
+                'message' => 'Logged in user.'
             ]);
-        }
-        catch (\Throwable $e) {
+        } catch (\Throwable $e) {
             return response()->json([
                 'type' => 'error',
                 'status' => '422',

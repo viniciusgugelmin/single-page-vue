@@ -1,7 +1,7 @@
 <template>
   <site-template>
     <poster-vue :color="color" :submit="onSubmit" :disabled="disabled" />
-    <timeline-vue :color="color" :name="name" :posts="posts" />
+    <timeline-vue :color="color" :posts="posts" />
   </site-template>
 </template>
 
@@ -18,7 +18,6 @@ export default {
   data () {
     return {
       color: 'blue-grey darken-2',
-      name: 'Lorem ipsum',
 
       posts: [],
 
@@ -29,9 +28,9 @@ export default {
   methods: {
     onSubmit(description) {
       this.disabled = true;
-      let post = { name: this.name, description: description, date: new Date().toLocaleString() }
+      let post = { name: this.user.name, description: description, date: new Date().toLocaleString() }
 
-      this.posts.push(post);
+      this.posts.unshift(post);
       this.disabled = false;
     }
   }

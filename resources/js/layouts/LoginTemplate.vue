@@ -1,7 +1,7 @@
 <template>
   <span>
     <header>
-      <navbar :color="color" logo="brand-logo" :title="title"/>
+      <navbar :color="color" logo="brand-logo" :title="title" />
     </header>
     <main>
       <div class="container">
@@ -26,18 +26,29 @@ import CardMenuItensVue from "@/components/user/CardMenuItensVue";
 export default {
   name: 'LoginTemplate',
 
-  data() {
-    return {
-      title: 'Lorem ipsum',
-      color: 'blue-grey darken-2',
-    }
-  },
+
   components: {
     CardMenuItensVue,
     CardPhotoVue,
     GridVue,
     Navbar,
     Footerbar
+  },
+
+  data() {
+    return {
+      title: 'Lorem ipsum',
+      color: 'blue-grey darken-2',
+    }
+  },
+
+  created() {
+    let userLogged = sessionStorage.getItem('user');
+
+    if (userLogged) {
+      this.user = JSON.parse(userLogged);
+      this.$router.push({name:'Home'})
+    }
   },
 }
 </script>
