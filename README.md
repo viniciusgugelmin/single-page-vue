@@ -6,7 +6,7 @@
   <h3 align="center">single-page-vue</h3>
 
   <p align="center">
-    Single page with vue
+    SPA with vue
     <br />
     <a href="https://github.com/viniciusgugelmin/single-page-vue"><strong>Explore the docs »</strong></a>
     <br />
@@ -37,9 +37,18 @@
 
 
 ## About The Project
-4fun project - single page with Vue and Materialize
 
-<img src="info/demo.png" alt="readme-logo" width="800">
+4fun project - SPA with Vue.js and PHP
+
+<ul>
+  <li>Login/register;</li>
+  <li>Poster;</li>
+  <li>Timeline;</li>
+</ul>
+
+<img src="info/demo.png" alt="readme-demo" width="800"></br>
+<img src="info/demo1.png" alt="readme-demo" width="800">
+
 
 ## Roadmap
 
