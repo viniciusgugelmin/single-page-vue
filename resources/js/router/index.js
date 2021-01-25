@@ -1,18 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from "@/pages/Home";
-import Login from "@/pages/Login";
+import Home from '@/pages/Home';
+import Login from '@/pages/Login';
+import Profile from '@/pages/Profile';
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
-    },
     {
       path: '/login',
       name: 'Login',
@@ -24,6 +20,16 @@ export default new Router({
       name: 'Sign up',
       meta: { registerForm: true },
       component: Login
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     },
     {
       path: '*',
