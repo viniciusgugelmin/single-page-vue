@@ -11,7 +11,11 @@ Vue.mixin({
   data() {
     return {
       localhost: 'http://127.0.0.1:8000',
-      user: {}
+      user: {},
+
+      errorMessage: {
+        default: 'Your request can\'t be completed right now. Please wait a few minutes before you try again.',
+      }
     }
   },
 
