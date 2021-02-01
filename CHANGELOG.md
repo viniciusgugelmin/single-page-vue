@@ -23,5 +23,14 @@
 - "Session storage user"
 - "User's authentication"
 
+## [1.1.1] - 2021-02-01
+### Added
+- Store
+  - User
+- Update user data
+
+### Deleted
+- Static user data
+
 
 
