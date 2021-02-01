@@ -3,14 +3,10 @@
     <div class="card-form">
       <form @submit.prevent="" class="blue-grey darken-2">
         <div class="cell">
-          <input v-model="form.email" id="email" type="text" class="validate">
-          <label for="email">E-mail</label>
+          <input v-model="form.name" id="name" type="text" class="validate">
+          <label for="name">Name</label>
         </div>
-        <div class="cell">
-          <input v-model="form.password" id="password" type="password" class="validate">
-          <label for="password">Password confirmation</label>
-        </div>
-        <button class="btn right l-btn" @click="onSubmit()" :disabled="loading">Edit</button>
+        <button class="btn right l-btn" @click="onSubmit()" :disabled="loading">Update</button>
       </form>
     </div>
   </site-template>
@@ -29,7 +25,6 @@ export default {
     return {
       form: {
         name: '',
-        password: '',
       },
 
       loading: false,
@@ -42,8 +37,8 @@ export default {
 
       axios.put( this.localhost + '/api/user/edit', {
         name: this.form.name,
-        password: this.form.password
-      })
+        email: this.user.email,
+      }, {"headers":{"authorization":"Bearer "+this.user.token}})
         .then(response => {
           if (response.data.type === 'error' && !response.data.status) {
             for (let error of Object.values(response.data.message)) {
@@ -52,6 +47,9 @@ export default {
           } else if (response.data.type === 'error' && response.data.status) {
             console.log(response.data.message)
           } else if (response.data.type === 'success') {
+            sessionStorage.setItem('user', JSON.stringify(response.data.user))
+            this.$store.dispatch('user/update', response.data.user);
+            this.form.name = '';
             console.log(response.data.message)
           }
         })
@@ -74,7 +72,7 @@ export default {
 }
 
 form {
-  height: 250px;
+  height: 170px;
   padding: 1.75rem;
   border: 2px solid #263238;
   border-radius: 50px;

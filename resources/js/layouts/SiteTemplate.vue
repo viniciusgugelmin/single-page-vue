@@ -51,9 +51,7 @@ export default {
   created() {
     let userLogged = sessionStorage.getItem('user');
 
-    if (userLogged) {
-      this.user = JSON.parse(userLogged);
-    } else {
+    if (!userLogged)  {
       this.$router.push({name: 'Login'});
     }
   },

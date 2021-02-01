@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -97,6 +98,35 @@ class UserController extends Controller
         return response()->json([
             'user' => $request->user()
         ]);
+    }
 
+    public function edit(Request $request)
+    {
+        $user = $request->user();
+        $data = $request->all();
+
+        $validation = Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => ['required', Rule::unique('users')->ignore($user->id)],
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'type' => 'error',
+                'message' => $validation->errors(),
+            ]);
+        }
+
+        $user->update([
+            'name' => $data['name']
+        ]);
+
+        $user->token = $user->createToken($user->email)->accessToken;
+
+        return response()->json([
+            'type' => 'success',
+            'user' => $user,
+            'message' => 'User updated.'
+        ]);
     }
 }

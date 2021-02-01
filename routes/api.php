@@ -33,6 +33,8 @@ Route::namespace('Api')->group(function () {
         Route::middleware(['auth:api'])->group(function () {
             // Get user data
             Route::get('/', [UserController::class, 'get']);
+            // Edit user data
+            Route::put('/edit', [UserController::class, 'edit']);
         });
     });
 });

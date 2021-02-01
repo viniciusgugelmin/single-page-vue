@@ -66,7 +66,7 @@ export default {
           }
         })
         .catch(error => {
-          console.log('Your request can\'t be completed right now. Please wait a few minutes before you try again.')
+          console.log(this.errorMessage.default)
         })
         .finally(() =>{
           console.log('------');
